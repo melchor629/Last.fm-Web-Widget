@@ -1,0 +1,165 @@
+@charset 'utf-8';
+
+.lastfm {
+    width: 300px;
+    height: 442px;
+    background: rgb(255, 92, 92);
+    background: rgba(255, 92, 92, 0.9);
+    border-radius: 10px;
+    font-family: "Lucida Grande", Arial, Helvetica, Verdana, sans-serif;
+}
+
+.lastfm .lfm-container {
+    padding: 10px;
+}
+
+.lastfm .songsCont {
+    height: 350px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    line-height: 1.1;
+}
+
+.lastfm table {
+    border-spacing: 0 2px;
+    border-collapse: separate;
+    width: 100%;
+}
+
+.lastfm .track {
+    background: rgb(228, 226, 165);
+    border-radius: 3px 0 0 3px;
+    text-align: right;
+    padding: 4px;
+    cursor: default;
+}
+
+.lastfm .now {
+    background: rgb(225, 233, 186);
+}
+
+.lastfm .now:before {
+    content: '\25BA';
+    position: relative;
+    left: 4px;
+    float: left;
+    color: rgb(206, 116, 3);
+}
+
+.lastfm .img {
+    border-radius: 0 3px 3px 0;
+    background: rgb(100, 100, 100);
+    padding: 0;
+    width: 64px;
+}
+
+.lastfm .img > img {
+    border-radius: 0 3px 3px 0;
+    width: 64px;
+}
+
+.lastfm .title {
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+.lastfm .artist {
+    font-size: 13px;
+    color: rgb(0, 100, 0);
+}
+
+.lastfm .album {
+    font-size: 11px;
+    font-style: italic;
+    color: rgb(123, 123, 123);
+}
+
+.lastfm .maravillosoTitulo {
+    margin: 1px;
+    text-align: center;
+    color: rgb(191, 222, 244);
+    text-shadow: 0 0 10px;
+    font-size: 1.17em;
+    min-height: 38px;
+}
+
+.lastfm .maravillosoTitulo > a {
+    color: rgb(191, 222, 244);
+    text-decoration: underline;
+    transition: color .1s linear;
+}
+
+.lastfm .maravillosoTitulo > a:hover {
+    color: rgb(201, 232, 254);
+}
+
+.lastfm .shd-cntA, .lastfm .shd-cntB {
+    z-index: 1;
+    opacity: 0;
+    position: relative;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    height: 8px;
+    bottom: -8.4px;
+    background: none;
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0)));
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.lastfm .shd-cntB {
+    bottom: 8px;
+    background: none;
+    background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.3)), to(rgba(0, 0, 0, 0)));
+    background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+    background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.lastfm .shadow {
+    -webkit-mask-box-image: -webkit-gradient(linear, left top, right top, color-stop(0, rgba(0, 0, 0, 0)), color-stop(0.2, rgba(0, 0, 0, 1)), color-stop(0.8, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
+    -webkit-mask-box-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+    -moz-mask-box-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+    -o-mask-box-image: -o-linear-gradient(left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 1) 80%, rgba(0, 0, 0, 0) 100%);
+}
+
+.lastfm .lfm-img {
+    border-radius: 10px;
+    max-width: 44px;
+    max-height: 50px;
+    float: left;
+    margin-right: 5px;
+    transition: transform .3s linear;
+    -webkit-transition: -webkit-transform .3s linear;
+    -moz-transition: -moz-transform .3s linear;
+    -ms-transition: -ms-transform .3s linear;
+    -o-transition: -o-transform .3s linear;
+}
+
+.lastfm .lfm-img:hover {
+    -webkit-transform: scale(1.6);
+    -moz-transform: scale(1.6);
+    -o-transform: scale(1.6);
+    -ms-transform: scale(1.6);
+    transform: scale(1.6);
+}
+
+.lastfm .marquee-song {
+    -webkit-mask-box-image: -webkit-gradient(linear, left, color-stop(rgba(0,0,0,0) 0%), color-stop(#FFF 5%), color-stop(#FFF 95%), color-stop(rgba(0,0,0,0) 100%));
+    -webkit-mask-box-image: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, #FFF 5%, #FFF 95%, rgba(0,0,0,0) 100%);
+    -moz-mask-box-image: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, #FFF 5%, #FFF 95%, rgba(0,0,0,0) 100%);
+    -o-mask-box-image: -o-linear-gradient(left, rgba(0,0,0,0) 0%, #FFF 5%, #FFF 95%, rgba(0,0,0,0) 100%);
+}
+
+.lastfm .scrbls {
+    font-size: 10px;
+    text-align: right;
+    margin: -4px 0 -8px 0;
+}
+
+.lastfm .scrbls b {
+    color: lightGreen;
+}

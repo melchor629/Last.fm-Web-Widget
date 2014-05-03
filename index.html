@@ -233,7 +233,7 @@
         var user = 'melchor629';
         if(window.document.documentURI.split('?')[1])
             user = window.document.location.search.replace(/\?user=/, '');
-        var obj = $('.lastfm').lastSongs(user, '201a5fdd42fd8cc5577fd0646b3e8ba7', null, 'https://github.com/melchor629/Last.fm-Web-Widget/raw/master/LastSongs.css');
+        var obj = $('.lastfm').lastSongs(user, '201a5fdd42fd8cc5577fd0646b3e8ba7');
         $(document).attr('title', user + ' - LastSongs');
         $('input[type="button"]').click(function(e) {
             e.preventDefault();
