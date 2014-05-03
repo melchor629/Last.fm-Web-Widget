@@ -128,7 +128,8 @@
 
 .lastfm .lfm-img {
     border-radius: 10px;
-    width: 44px;
+    max-width: 44px;
+    max-height: 50px;
     float: left;
     margin-right: 5px;
     transition: transform .3s linear;

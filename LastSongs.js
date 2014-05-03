@@ -102,7 +102,7 @@
         this.apiKey = apiKey;
         this.elem = elem ? elem : $('div.lastfm');
         this.timeoutTime = timeoutTime ? timeoutTime : 10000;
-        this.styleSrc = styleSrc ? styleSrc : 'https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/8Z9WNUUWvP/LastSongs/LastSongs.css';
+        this.styleSrc = styleSrc ? styleSrc : 'LastSongs.css';
 
         //Comprueba falta de cosas
         if(!user) {
@@ -258,19 +258,14 @@
             '    <div class="shd-cntB shadow" style="opacity:1"></div>'+
             '    <span style="font-size:8px">Last.FM widget <a id="aa" href="http://blogmelchor.blogspot.com" target="_blank">Hecho por melchor629</a></span>'+
             '</div>');
-            var e = document.createElement('script');
-            e.onload = function() {
-                $($this.elem).find('.songsCont').slimScroll({
-                    railVisible: true,
-                    height: 350,
-                    color: '#FFF',
-                    railColor: '#F0F0F0',
-                    size: '8px',
-                    wheelStep: 5
-                });
-            };
-            e.src = 'https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/VLjrZlaP9r/LastSongs/jquery.slimscroll.min.js';
-            document.getElementsByTagName('head')[0].appendChild(e);
+            $(this.elem).find('.songsCont').slimScroll({
+                railVisible: true,
+                height: 350,
+                color: '#FFF',
+                railColor: '#F0F0F0',
+                size: '8px',
+                wheelStep: 5
+            });
         },
 
         _loadData: function() {
