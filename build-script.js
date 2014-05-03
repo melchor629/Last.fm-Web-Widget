@@ -1,5 +1,5 @@
 var fs = require('fs');
-var js = 'æ';
+var js = '';
 
 if(fs.existsSync('lastSongs.comp.js'))
     fs.unlinkSync('lastSongs.comp.js');
@@ -8,6 +8,8 @@ var files = fs.readdirSync('.');
 for(var i = 0; i < files.length; i++) {
     var file = files[i];
     if(file.substr(-2) !== 'js')
+        continue;
+    if(file === 'build-script.js')
         continue;
     js += '//' + file + '\n';
     js += fs.readFileSync(file, { encoding: 'UTF-8' });
