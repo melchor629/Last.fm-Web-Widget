@@ -1,79 +1,479 @@
+<!-- https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/V5y6yJoduq/LastSongs/recently.html -->
 <!DOCTYPE html>
 <html>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <body>
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li class="active"><a href="#">Home</a></li>
+                    <li><a href="#">Github</a></li>
+                </ul>
+                <h3 class="text-muted">LastSongs</h3>
+            </div>
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Last.fm-web-widget : A easy configurable Last.fm widget for the web. Show recent tracks of a user and its total scrobblings." />
+            <div class="page-header">
+                <h1>LastSongs <small>Your recent songs in a widget</small><h1>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-4">
+                    <div class="lastfm"></div>
+                </div>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+                <div class="col-xs-8">
+                    <div class="edit">
+                        <h3>Adapt the widget to your liking</h3>
+                        <div class="row">
+                            <div class="col-xs-4 input-group" style="float:left">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input class="form-control input-sm" type="text" placeholder="Your last.fm user">
+                            </div>
+                            <div class="col-xs-2" style="width:auto">
+                                <input class="btn btn-primary btn-sm" type="button" value="Change user to">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4">
+                                Background color: <input type="text" class="backgroundcolor"><br>
+                                Header color: <input type="text" class="headercolor"><br>
+                                Title color: <input type="text" class="titlecolor"><br>
+                                Artist color: <input type="text" class="artistcolor"><br>
+                                Album color: <input type="text" class="albumcolor"><br>
+                                Song Background color: <input type="text" class="songbckgcolor"><br>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-1">Styles:</div>
+                            <div class="col-xs-4 btn-group btn-group-xs styles-g">
+                                <button class="btn btn-default">Default</button>
+                                <button class="btn btn-default">Dark</button>
+                                <button class="btn btn-default">Light</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-4 input-group">
+                                <span class="input-group-addon">Width of the widget:</span>
+                                <input type="number" class="form-control input-sm width" value="300"  maxlength="4" pattern="[0-9]{0,4}">
+                                <span class="input-group-addon">px</span>
+                            </div>
+                        </div>
+                        Require a <a href="http://www.lastfm.es/api/accounts" target="_blank">Last.FM API</a>:
+                        <input type="text" class="form-control" placeholder="Your Lastfm API" id="APIKEY" style="width:270px" maxlength="32">
+                        <br>
+                        <div class="panel-group" id="accordion">
+                          <div class="panel panel-default">
+                            <div class="panel-heading">
+                              <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                   HTML Code <small>click to show/hide</small>
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                              <div class="panel-body">
+                                <p class="lead">Copy and paste this code following the instructions below, or you can put it togheter.
+                                But if you put it all together you have to use jQuery before the first <code>&lt;script&gt;</code>.
+                                Remember put a valid Lastfm API key!</p>
+                                <pre id="textarea"></pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        Require jQuery: <code>&lt;script src="http://code.jquery.com/jquery-git2.min.js"&gt;&lt;/script&gt;</code>
+                    </div>
+                </div>
+            </div>
 
-    <title>Last.fm-web-widget</title>
-  </head>
+            <div class="api">
+                <h2 id="lastsongs-api">LastSongs API</h2>
 
-  <body>
+                <h3 id="basic-usage">Basic usage</h3>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/melchor629/Last.fm-Web-Widget">View on GitHub</a>
+                <p>Select a node with jQuery and apply this function: <code>.lastSongs(username, apikey [, timeoutTime, styleSrc]);</code></p>
 
-          <h1 id="project_title">Last.fm-web-widget</h1>
-          <h2 id="project_tagline">A easy configurable Last.fm widget for the web. Show recent tracks of a user and its total scrobblings.</h2>
+                <ul>
+                <li><em>string</em> <code>username</code>: is your Lastfm username, or the user you want to show in the widget</li>
+                <li><em>string</em> <code>apikey</code>: is your api key from <a href="http://www.lastfm.es/api/accounts">Lastfm</a></li>
+                <li><em>number</em> <code>timeoutTime</code>: (<em>Not required</em>) set time in milliseconds for every update of information</li>
+                <li><em>string</em> <code>styleSrc</code>: (<em>Not required</em>) if you have the style file in other path or with other name, set its path here (only absolute paths)</li>
+                </ul>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/melchor629/Last.fm-Web-Widget/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/melchor629/Last.fm-Web-Widget/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
+                <p>An example of this constructor can be: <code>$('.lastfm').lastSongs('melchor629', '1largeapikey...');</code> <br>
+                This function returns an object. This object is used to manipulate some aspects of the widget, with API functions.</p><div class="se-section-delimiter"></div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+                <h3 id="api-functions">API Functions</h3>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+                <p><strong>Something you should know:</strong> All this functions return the same object, allowing chaning functions like this: </p><div class="se-section-delimiter"></div>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
+                <pre class="prettyprint prettyprinted" style=""><code><span class="pln">$</span><span class="pun">(</span><span class="str">'.lastfm'</span><span class="pun">).</span><span class="pln">lastSongs</span><span class="pun">(</span><span class="str">'melchor629'</span><span class="pun">,</span><span class="pln"> </span><span class="str">'1largeapikey...'</span><span class="pun">).</span><span class="pln">setTimeout</span><span class="pun">(</span><span class="lit">60</span><span class="pun">).</span><span class="pln">setWidth</span><span class="pun">(</span><span class="lit">240</span><span class="pun">).</span><span class="pln">colorDeFondo</span><span class="pun">(</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">234</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.8</span><span class="pun">).</span><span class="pln">applyStyle</span><span class="pun">();</span></code></pre><div class="se-section-delimiter"></div>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+                <h4 id="settimeouttime"><strong>.setTimeout(time)</strong></h4>
 
-<h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+                <p>Changes the time to update information.</p>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+                <ul>
+                <li><em>number</em> <code>time</code>: Time in seconds</li>
+                </ul>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+                <h4 id="settimeoutinmillistime"><strong>.setTimeoutInMillis(time)</strong></h4>
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
+                <p>Same as above function, buy in milliseconds</p>
 
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
+                <ul>
+                <li><em>number</em> <code>time</code>: Time in milliseconds</li>
+                </ul>
 
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+                <h4 id="setwidthwidth"><strong>.setWidth(width)</strong></h4>
 
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+                <p>Changes the width of the widget. Useful for change the size smaller for blogs with widget panels smaller than 300px.</p>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
+                <ul>
+                <li><em>number</em> or <em>string</em> <code>width</code>: New width. Append ‘px’ at the end, if it’s a string.</li>
+                </ul><div class="se-section-delimiter"></div>
 
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Last.fm-web-widget maintained by <a href="https://github.com/melchor629">melchor629</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
+                <h4 id="applystyle"><strong>.applyStyle()</strong></h4>
 
-    
+                <p>When some changes are done to the style of the widget, you should call this function to apply the changes. This function doesn’t affect the width.</p>
 
-  </body>
+                <h4 id="colordefondor-g-b-a"><strong>.colorDeFondo(r, g, b, a)</strong></h4>
+
+                <p>Changes, internally, the background color of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>a</code>: Alpha of a rgba color. Valid range [0, 1], float numbers are valid</li>
+                </ul><div class="se-section-delimiter"></div>
+
+                <h4 id="colordelacabecerar-g-b"><strong>.colorDeLaCabecera(r, g, b)</strong></h4>
+
+                <p>Changes, internally, the header color text of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                </ul>
+
+                <h4 id="colordeltitulor-g-b"><strong>.colorDelTitulo(r, g, b)</strong></h4>
+
+                <p>Changes, internally, the song title text color of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                </ul>
+
+                <h4 id="colordelartistar-g-b"><strong>.colorDelArtista(r, g, b)</strong></h4>
+
+                <p>Changes, internally, the song artist text color of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                </ul>
+
+                <h4 id="colordelalbumr-g-b"><strong>.colorDelAlbum(r, g, b)</strong></h4>
+
+                <p>Changes, internally, the song album text color of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                </ul>
+
+                <h4 id="colordecancionr-g-b"><strong>.colorDeCancion(r, g, b)</strong></h4>
+
+                <p>Changes, internally, the background of one of the song list color of the widget. To apply the changes use <code>.applyStyle()</code></p>
+
+                <ul>
+                <li><em>number</em> <code>r</code>: Red component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>g</code>: Green component of a rgb(a) color. Valid range [0, 255]</li>
+                <li><em>number</em> <code>b</code>: Blue component of a rgb(a) color. Valid range [0, 255]</li>
+                </ul>
+            </div>
+        </div>
+
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="http://bgrins.github.com/spectrum/spectrum.css">
+        <style>
+            body {
+                background-color: rgb(44, 44, 44);
+                color: rgb(200, 200, 200);
+            }
+            .page-header {
+                border-bottom: 1px solid #A5A2A2;
+            }
+            code {
+                color: #DA4A6E;
+                background-color: #50494B;
+            }
+            pre {
+                color: #E9E9E9;
+                background-color: #474747;
+                border: 1px solid #616161;
+            }
+            .panel .panel-body {
+                background-color: rgb(60, 60, 60);
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+        <script src="http://bgrins.github.com/spectrum/spectrum.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/iH0cuTaOkT/LastSongs/LastSongs.js"></script>
+        <script>
+        var user = 'melchor629';
+        if(window.document.documentURI.split('?')[1])
+            user = window.document.location.search.replace(/\?user=/, '');
+        var obj = $('.lastfm').lastSongs(user, '201a5fdd42fd8cc5577fd0646b3e8ba7');
+        $(document).attr('title', user + ' - LastSongs');
+        $('input[type="button"]').click(function(e) {
+            e.preventDefault();
+            window.document.location.href = window.document.location.origin+
+                window.document.location.pathname + '?user='+$('input[type="text"]').val();
+        });
+        $('#APIKEY').change(function() {
+            textarea();
+        });
+        var col = function(c) {
+            if('object' === typeof(c))
+            return ''+c.red+', '+c.green+', '+c.blue+', '+c.alpha;
+            else return c.substr(5).replace(')', '');
+        },
+        textarea = function() {
+            var a = $('#APIKEY').val();
+            if(!(a.length === 32 && /[a-z0-9]/.test(a)))
+                a = undefined;
+            $("#textarea").text(
+                '<!-- Put this code anywhere you want to put the widget -->\n'+
+                '<div class="lastfm"></div>\n\n'+
+                '<!-- This code before ending </body> tag -->\n'+
+                '<!-- This script requires jQuery, if you don\'t have it, copy the next line too -->\n'+
+                '<script src="http://code.jquery.com/jquery-git2.min.js"><\/script>\n\n'+
+                '<script src="https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/iH0cuTaOkT/LastSongs/LastSongs.js"><\/script>\n'+
+                '<script>$(".lastfm").'+
+                'lastSongs("'+user+'", "'+(a?a:"YOUR-LASTFM-API-KEY")+'")\n'+
+                '.colorDeFondo('+col(obj.colors.BACKGROUND_COLOR_ALPHA)+')\n'+
+                '.colorDeLaCabecera('+col(obj.colors.TITULO_COLOR)+')\n'+
+                '.colorDelTitulo('+col(obj.colors.TITULO)+')\n'+
+                '.colorDelArtista('+col(obj.colors.ARTISTA)+')\n'+
+                '.colorDelAlbum('+col(obj.colors.ALBUM)+')\n'+
+                '.colorDeCancion('+col(obj.colors.TRACK)+')\n'+
+                '.setWidth('+$(".width").val()+')\n'+
+                '.applyStyle()' +
+                ';<\/script>');
+        };
+        textarea();
+
+        $('.backgroundcolor').spectrum({
+            color: 'rgba(255, 92, 92, 0.9)',
+            showAlpha: true,
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDeFondo(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.headercolor').spectrum({
+            color: 'rgb(191, 222, 244)',
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDeLaCabecera(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.titlecolor').spectrum({
+            color: 'rgb(0,0,0)',
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDelTitulo(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.artistcolor').spectrum({
+            color: 'rgb(0,100,0)',
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDelArtista(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.albumcolor').spectrum({
+            color: 'rgb(123, 123, 123)',
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDelAlbum(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.songbckgcolor').spectrum({
+            color: 'rgb(228, 226, 165)',
+            showInput: true,
+            preferredFormat: 'rgb',
+            change: function(a) {
+                var c = a.toRgb();
+                obj.colorDeCancion(c.r, c.g, c.b, c.a).applyStyle();
+                textarea();
+            }
+        });
+        $('.width').change(function() {
+            textarea();
+        });
+        $('#APIKEY').change(function() {
+            textarea();
+        });
+
+        $('.styles-g').find('button').eq(0).click(function(e) {
+            e.preventDefault();
+            obj.colorDeFondo(255, 92, 92, 0.9)
+                .colorDeLaCabecera(191, 222, 244, 1)
+                .colorDelTitulo(0, 0, 0, 1)
+                .colorDelArtista(0, 100, 0, 1)
+                .colorDelAlbum(123, 123, 123, 1)
+                .colorDeCancion(228, 226, 165, 1)
+                .applyStyle();
+            textarea();
+            $('.backgroundcolor').spectrum('set', 'rgba(255, 92, 92, 0.9)');
+            $('.headercolor').spectrum('set', 'rgba(191, 222, 244, 1)');
+            $('.titlecolor').spectrum('set', 'rgba(0, 0, 0, 1)');
+            $('.artistcolor').spectrum('set', 'rgba(0, 100, 0, 1)');
+            $('.albumcolor').spectrum('set', 'rgba(123, 123, 123, 1)');
+            $('.songbckgcolor').spectrum('set', 'rgba(228, 226, 165, 1)');
+        });
+        $('.styles-g').find('button').eq(1).click(function(e) {
+            e.preventDefault();
+            obj.colorDeFondo(0, 0, 0, 0.7)
+                .colorDeLaCabecera(247, 211, 216, 1)
+                .colorDelTitulo(106, 174, 249, 1)
+                .colorDelArtista(224, 229, 146, 1)
+                .colorDelAlbum(210, 208, 208, 1)
+                .colorDeCancion(116, 116, 116, 1)
+                .applyStyle();
+            textarea();
+            $('.backgroundcolor').spectrum('set', 'rgba(0, 0, 0, 0.7)');
+            $('.headercolor').spectrum('set', 'rgba(247, 211, 216, 1)');
+            $('.titlecolor').spectrum('set', 'rgba(106, 174, 249, 1)');
+            $('.artistcolor').spectrum('set', 'rgba(224, 229, 146, 1)');
+            $('.albumcolor').spectrum('set', 'rgba(210, 208, 208, 1)');
+            $('.songbckgcolor').spectrum('set', 'rgba(116, 116, 116, 1)');
+        });
+        $('.styles-g').find('button').eq(2).click(function(e) {
+            e.preventDefault();
+            obj.colorDeFondo(250, 250, 210, 0.9)
+                .colorDeLaCabecera(41, 97, 112, 1)
+                .colorDelTitulo(249, 106, 106, 1)
+                .colorDelArtista(144, 223, 135, 1)
+                .colorDelAlbum(99, 99, 99, 1)
+                .colorDeCancion(242, 242, 242, 1)
+                .applyStyle();
+            textarea();
+            $('.backgroundcolor').spectrum('set', 'rgba(250, 250, 210, 0.9)');
+            $('.headercolor').spectrum('set', 'rgba(41, 97, 112, 1)');
+            $('.titlecolor').spectrum('set', 'rgba(249, 106, 106, 1)');
+            $('.artistcolor').spectrum('set', 'rgba(144, 223, 135, 1)');
+            $('.albumcolor').spectrum('set', 'rgba(99, 99, 99, 1)');
+            $('.songbckgcolor').spectrum('set', 'rgba(242, 242, 242, 1)');
+        });
+        </script>
+    </body>
 </html>
+
+<!--
+## LastSongs API
+### Basic usage
+Select a node with jQuery and apply this function: `.lastSongs(username, apikey [, timeoutTime, styleSrc]);`
+
+- *string* `username`: is your Lastfm username, or the user you want to show in the widget
+- *string* `apikey`: is your api key from [Lastfm][1]
+- *number* `timeoutTime`: (*Not required*) set time in milliseconds for every update of information
+- *string* `styleSrc`: (*Not required*) if you have the style file in other path or with other name, set its path here (only absolute paths)
+
+An example of this constructor can be: `$('.lastfm').lastSongs('melchor629', '1largeapikey...');`
+This function returns an object. This object is used to manipulate some aspects of the widget, with API functions.
+### API Functions
+**Something you should know:** All this functions return the same object, allowing chaning functions like this: 
+```
+$('.lastfm').lastSongs('melchor629', '1largeapikey...').setTimeout(60).setWidth(240).colorDeFondo(100, 234, 100, 0.8).applyStyle();
+```
+####**.setTimeout(time)**
+Changes the time to update information.
+
+- *number* `time`: Time in seconds
+
+####**.setTimeoutInMillis(time)**
+Same as above function, buy in milliseconds
+
+- *number* `time`: Time in milliseconds
+
+####**.setWidth(width)**
+Changes the width of the widget. Useful for change the size smaller for blogs with widget panels smaller than 300px.
+
+- *number* or *string* `width`: New width. Append 'px' at the end, if it's a string.
+
+####**.applyStyle()**
+When some changes are done to the style of the widget, you should call this function to apply the changes. This function doesn't affect the width.
+
+####**.colorDeFondo(r, g, b, a)**
+Changes, internally, the background color of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+- *number* `a`: Alpha of a rgba color. Valid range [0, 1], float numbers are valid
+
+####**.colorDeLaCabecera(r, g, b)**
+Changes, internally, the header color text of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+
+####**.colorDelTitulo(r, g, b)**
+Changes, internally, the song title text color of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+
+####**.colorDelArtista(r, g, b)**
+Changes, internally, the song artist text color of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+
+####**.colorDelAlbum(r, g, b)**
+Changes, internally, the song album text color of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+
+####**.colorDeCancion(r, g, b)**
+Changes, internally, the background of one of the song list color of the widget. To apply the changes use `.applyStyle()`
+
+- *number* `r`: Red component of a rgb(a) color. Valid range [0, 255]
+- *number* `g`: Green component of a rgb(a) color. Valid range [0, 255]
+- *number* `b`: Blue component of a rgb(a) color. Valid range [0, 255]
+
+
+  [1]: http://www.lastfm.es/api/accounts
+-->
