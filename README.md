@@ -8,12 +8,15 @@ The idea of this project is create a simple and complete widget for users who wa
 For how to put this widget in your web, or the API for the widget or an example of code, go to the [GitHub page][1].
 
 __Preview of the widget with the default theme:__
+
 ![Widget preview with default theme][2]
 
 __Preview of the widget with dark theme:__
+
 ![Widget preview with dark theme][3]
 
 __Preview of the widget with light theme:__
+
 ![Widget preview with light theme][4]
 
 ## License
