@@ -228,12 +228,12 @@
         <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
         <script src="http://bgrins.github.com/spectrum/spectrum.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="https://dl.dropboxusercontent.com/sh/4etbvml1tigbhhw/iH0cuTaOkT/LastSongs/LastSongs.js"></script>
+        <script src="lastSongs.comp.js"></script>
         <script>
         var user = 'melchor629';
         if(window.document.documentURI.split('?')[1])
             user = window.document.location.search.replace(/\?user=/, '');
-        var obj = $('.lastfm').lastSongs(user, '201a5fdd42fd8cc5577fd0646b3e8ba7');
+        var obj = $('.lastfm').lastSongs(user, '201a5fdd42fd8cc5577fd0646b3e8ba7', null, 'https://github.com/melchor629/Last.fm-Web-Widget/raw/master/LastSongs.css');
         $(document).attr('title', user + ' - LastSongs');
         $('input[type="button"]').click(function(e) {
             e.preventDefault();
