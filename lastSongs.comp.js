@@ -1,4 +1,4 @@
-æ//LastSongs.js
+//LastSongs.js
 ;(function(window, $) {
     if("undefined" == typeof $)
         throw new Error("LastSongs requires jQuery");
