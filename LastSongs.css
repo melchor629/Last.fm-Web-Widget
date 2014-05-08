@@ -7,6 +7,7 @@
     background: rgba(255, 92, 92, 0.9);
     border-radius: 10px;
     font-family: "Lucida Grande", Arial, Helvetica, Verdana, sans-serif;
+    color: white;
 }
 
 .lastfm .lfm-container {
@@ -162,4 +163,8 @@
 
 .lastfm .scrbls b {
     color: lightGreen;
+}
+
+.lastfm #aa:visited {
+    color: white;
 }
